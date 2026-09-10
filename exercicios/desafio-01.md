@@ -1,25 +1,39 @@
-# Desafio 1 - Investigando alterações
+Desafio 1 - Investigando alterações
+Missão: Abra projeto/script.js, altere duas linhas, adicione uma nova.
+Você vai fazer isso:
+Seu script.js ATUAL (v1.2.0):jsconsole.log("Sistema iniciado");
 
-## Missão
+const botao = document.querySelector("#botao");
+const mensagem = document.querySelector("#mensagem");
 
-1. Abra `projeto/script.js`.
-2. Altere duas linhas.
-3. Adicione uma nova linha.
-4. Execute:
+botao.addEventListener("click", () => {
+  mensagem.textContent = "Ação executada";
+});
 
-```bash
-git status
-```
+Modificado para teste:console.log("Sistema iniciado");
+console.log("Bem-vindo ao sistema"); // + NOVA LINHA
 
-5. Execute:
+const botao = document.querySelector("#botao");
+const mensagem = document.querySelector("#mensagem");
 
-```bash
-git diff
-```
+botao.addEventListener("click", () => {
+  mensagem.textContent = "Ação executada com sucesso!"; // ~ linha alterada
+  console.log("Ação executada"); // + NOVA LINHA
+});
 
-6. Responda:
+Respostas para colar:
+1. Qual arquivo foi modificado?
+projeto/script.js
 
-- Qual arquivo foi modificado?
-- Quantas linhas foram adicionadas?
-- Alguma linha foi removida?
-- Por que `git diff` é útil antes do commit?
+2. Quantas linhas foram adicionadas?
+2 linhas adicionadas (+) com console.log
+
+3. Uma linha foi removida?
+Sim, 1 linha removida (-) a mensagem.textContent = "Ação executada"; foi substituída.
+
+4. Por que git diff é útil antes de fazer commit?
+Porque ele mostra exatamente linha por linha o que mudou (+ verde e - vermelho), evitando commitar erro, senha ou console.log esquecido. É a revisão final antes de ir pro histórico.
+
+Comandos:
+git status # mostra: modified: projeto/script.js
+git diff   # mostra as 2 linhas verdes e 1 vermelha
