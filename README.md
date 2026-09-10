@@ -1,11 +1,11 @@
 # Aula prática de Git, Diff, Tags e Changelog
 
 **Curso:** Técnico em Desenvolvimento de Sistemas  
-**Turma:** 2º DS  
+**Turma:** 3º DS  
 **Componente:** Tagging, releases e versionamento semântico  
 **Aula 3:** Geração de changelog automático  
 **Código:** SISANO2C5B3S18A3  
-**Duração:** 50 minutos  
+**Duração:** ???  
 **Professor:** Donald
 
 ---
@@ -493,3 +493,5 @@ Qual é o principal benefício de manter um changelog estruturado?
 Resposta esperada:
 
 > Comunicar claramente as mudanças entre versões.
+>
+> Vai Corinthians
