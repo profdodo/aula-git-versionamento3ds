@@ -1,495 +1,154 @@
-# Aula prática de Git, Diff, Tags e Changelog
+**Aula prática de Git, Diff, Tags e Changelog**
 
-**Curso:** Técnico em Desenvolvimento de Sistemas  
-**Turma:** 2º DS  
-**Componente:** Tagging, releases e versionamento semântico  
-**Aula 3:** Geração de changelog automático  
-**Código:** SISANO2C5B3S18A3  
-**Duração:** 50 minutos  
-**Professor:** Donald
+Aluno(a): Cristina Gabriely Pinto Campos
+Curso: Técnico em Desenvolvimento de Sistemas
+Turma: 2º DS
+Componente: Tagging, releases e versionamento semântico
+Aula 3: Geração de changelog automático
 
----
+Desafio 1 — Investigando alterações
+1. Qual arquivo foi modificado?
 
-## Objetivos da aula
+O arquivo modificado foi:
 
-Ao final da aula, você deverá conseguir:
-
-- identificar alterações em arquivos com `git status`;
-- comparar mudanças com `git diff`;
-- entender a diferença entre `git diff` e `git diff --staged`;
-- criar commits usando Conventional Commits;
-- compreender versionamento semântico;
-- criar tags;
-- comparar duas versões;
-- estruturar um `CHANGELOG.md`.
-
----
-
-# 1. Pergunta inicial
-
-Imagine que ontem o sistema estava funcionando.
-
-Hoje três desenvolvedores alteraram o código.
-
-Como podemos descobrir:
-
-1. O que mudou?
-2. Quem mudou?
-3. Quando mudou?
-4. Por que mudou?
-5. Qual versão contém a alteração?
-
----
-
-# 2. Preparando o projeto
-
-Clone este repositório:
-
-```bash
-git clone URL_DO_REPOSITORIO
-```
-
-Entre na pasta:
-
-```bash
-cd aula-git-versionamento
-```
-
-Veja o estado atual:
-
-```bash
-git status
-```
-
----
-
-# 3. Primeiro experimento
-
-Abra:
-
-```text
 projeto/script.js
-```
+2. Quantas linhas foram adicionadas?
 
-Você encontrará:
+Foram adicionadas 2 novas linhas, além das linhas que foram modificadas.
 
-```javascript
-console.log("Sistema iniciado");
-```
+As alterações realizadas foram:
 
-Adicione uma nova linha:
+console.log("Laboratório iniciado");
 
-```javascript
-console.log("Bem-vindo ao sistema");
-```
+e:
 
-Agora execute:
+mensagem.textContent = "Ação realizada com sucesso";
 
-```bash
-git status
-```
+Também foi adicionada uma nova linha:
 
-## Pergunta para a turma
+console.log("Sistema pronto para uso");
+3. Houve alguma linha removida?
 
-O Git sabe que o arquivo mudou.
+Sim. Duas linhas antigas foram substituídas por novas versões.
 
-Mas como descobrir exatamente o que mudou?
+No git diff, as linhas removidas são identificadas com - e as linhas adicionadas com +.
 
----
+4. Por que o git diff é útil antes do commit?
 
-# 4. Git Diff
+O git diff é útil porque permite visualizar exatamente quais alterações foram feitas no projeto antes de criar um commit. Dessa forma, é possível revisar o código, identificar erros e garantir que somente as modificações desejadas sejam registradas.
 
-Execute:
+Desafio 2 — Conventional Commits
+Alteração	Tipo	Commit
+Adiciona recuperação de senha	feat	feat: adiciona recuperação de senha
+Corrige erro no login	fix	fix: corrige erro no login
+Atualiza README	docs	docs: atualiza README
+Reorganiza autenticação	refactor	refactor: reorganiza autenticação
+Adiciona foto de perfil	feat	feat: adiciona foto de perfil
+Corrige validação de e-mail	fix	fix: corrige validação de e-mail
+Explicação
+feat: utilizado para adicionar uma nova funcionalidade.
+fix: utilizado para corrigir um problema ou erro.
+docs: utilizado para alterações na documentação.
+refactor: utilizado para reorganizar ou melhorar o código sem mudar sua funcionalidade principal.
+Desafio Final — Release
+1. Classificação dos commits
+Features
+feat: adiciona recuperação de senha
+feat: adiciona foto de perfil
+Correções
+fix: corrige validação de e-mail
+fix: corrige botão de login
+Melhorias internas
+refactor: reorganiza autenticação
+Documentação
+docs: adiciona instruções de instalação
+2. Determine a próxima versão
 
-```bash
-git diff
-```
+De acordo com o enunciado do exercício, a próxima versão seria:
 
-Observe os símbolos:
-
-```text
-- linha removida
-+ linha adicionada
-```
-
-## Desafio 1
-
-1. Modifique duas linhas do projeto.
-2. Adicione uma nova linha.
-3. Execute `git diff`.
-4. Identifique:
-   - arquivo modificado;
-   - linha adicionada;
-   - linha removida.
-
-Veja também:
-
-```bash
-git diff -- projeto/script.js
-```
-
----
-
-# 5. Área de preparação
-
-Adicione as mudanças:
-
-```bash
-git add .
-```
-
-Agora execute:
-
-```bash
-git status
-```
-
-Tente novamente:
-
-```bash
-git diff
-```
-
-Depois:
-
-```bash
-git diff --staged
-```
-
-## Pergunta
-
-Qual é a diferença?
-
-- `git diff` mostra mudanças ainda não adicionadas à área de preparação.
-- `git diff --staged` mostra o que já está preparado para o próximo commit.
-
----
-
-# 6. Conventional Commits
-
-Use mensagens padronizadas.
-
-| Prefixo | Uso |
-|---|---|
-| `feat` | nova funcionalidade |
-| `fix` | correção |
-| `docs` | documentação |
-| `refactor` | melhoria interna |
-| `test` | testes |
-| `style` | formatação sem mudança de lógica |
-
-Exemplo:
-
-```bash
-git commit -m "feat: adiciona mensagem de boas-vindas"
-```
-
-Veja o histórico:
-
-```bash
-git log --oneline
-```
-
----
-
-# 7. Jogo rápido
-
-Classifique cada situação:
-
-```text
-Corrigi um erro no botão de login.
-```
-
-Resposta esperada:
-
-```text
-fix
-```
-
-```text
-Adicionei recuperação de senha.
-```
-
-Resposta:
-
-```text
-feat
-```
-
-```text
-Atualizei o README.
-```
-
-Resposta:
-
-```text
-docs
-```
-
-```text
-Reorganizei o código sem mudar o funcionamento.
-```
-
-Resposta:
-
-```text
-refactor
-```
-
----
-
-# 8. Versionamento semântico
-
-Formato:
-
-```text
-MAJOR.MINOR.PATCH
-```
-
-Exemplo:
-
-```text
-1.3.2
-```
-
-Significado:
-
-```text
-MAJOR = mudança incompatível
-MINOR = nova funcionalidade compatível
-PATCH = correção
-```
-
-Exemplos:
-
-```text
-1.3.1 -> 1.3.2
-PATCH
-```
-
-```text
-1.3.2 -> 1.4.0
-MINOR
-```
-
-```text
-1.4.0 -> 2.0.0
-MAJOR
-```
-
-## Perguntas para a turma
-
-Versão atual:
-
-```text
-1.2.0
-```
-
-Corrigimos um pequeno bug.
-
-Resposta:
-
-```text
-1.2.1
-```
-
-Adicionamos recuperação de senha sem quebrar nada.
-
-Resposta:
-
-```text
-1.3.0
-```
-
-Mudamos a API e programas antigos deixaram de funcionar.
-
-Resposta:
-
-```text
-2.0.0
-```
-
----
-
-# 9. Tags
-
-Crie uma tag simples:
-
-```bash
-git tag v1.3.0
-```
-
-Liste:
-
-```bash
-git tag
-```
-
-Tag anotada:
-
-```bash
-git tag -a v1.3.0 -m "Release versão 1.3.0"
-```
-
-Verifique:
-
-```bash
-git show v1.3.0
-```
-
-Envie para o GitHub:
-
-```bash
-git push origin v1.3.0
-```
-
----
-
-# 10. Comparando versões
-
-Se o projeto possuir duas tags:
-
-```text
-v1.2.0
 v1.3.0
-```
+3. Explique por que ela é PATCH, MINOR ou MAJOR
 
-compare:
+A versão 1.3.0 representa uma atualização MINOR, porque foram adicionadas novas funcionalidades ao sistema, como recuperação de senha e foto de perfil.
 
-```bash
-git diff v1.2.0 v1.3.0
-```
+No versionamento semântico:
 
-## Pergunta
+MAJOR.MINOR.PATCH
 
-O que esse comando faz?
+Nesse caso:
 
-Resposta esperada:
+1.2.0 → 1.3.0
 
-> Compara o estado do projeto entre as duas versões.
+O número MINOR aumentou de 2 para 3.
 
----
+4. Atualização do CHANGELOG
 
-# 11. Ferramentas visuais de comparação
+O CHANGELOG.md deve registrar as alterações da nova versão da seguinte forma:
 
-Além de `git diff`, existem ferramentas como:
-
-- Meld
-- KDiff3
-- Vimdiff
-
-Elas ajudam a visualizar diferenças e conflitos.
-
-Exemplo com uma ferramenta configurada:
-
-```bash
-git difftool
-```
-
----
-
-# 12. Patch
-
-Um patch é um arquivo que guarda alterações.
-
-Gerar:
-
-```bash
-git diff > alteracoes.patch
-```
-
-Verificar:
-
-```bash
-git apply --check alteracoes.patch
-```
-
-Aplicar:
-
-```bash
-git apply alteracoes.patch
-```
-
----
-
-# 13. CHANGELOG
-
-Abra:
-
-```text
-CHANGELOG.md
-```
-
-Um changelog registra alterações importantes de cada versão.
-
-Exemplo:
-
-```markdown
 ## [1.3.0]
 
 ### Features
 
 - Adicionada recuperação de senha.
+- Adicionada foto de perfil.
 
 ### Correções
 
-- Corrigido erro no login.
+- Corrigida validação de e-mail.
+- Corrigido botão de login.
 
 ### Melhorias internas
 
-- Refatorado sistema de autenticação.
+- Reorganizada autenticação.
 
 ### Documentação
 
-- Atualizado README.
-```
+- Adicionadas instruções de instalação.
+5. Criação da tag correspondente
 
----
+O comando indicado para criar uma tag anotada é:
 
-# 14. Desafio final
+git tag -a v1.3.0 -m "Release versão 1.3.0"
 
-Abra:
+Porém, no repositório utilizado na aula, a tag v1.3.0 já havia sido criada anteriormente pelo professor. Por isso, ela não foi sobrescrita.
 
-```text
-exercicios/desafio-final.md
-```
+Para marcar o estado posterior do meu trabalho, foi criada e publicada a tag:
 
-Resolva em grupo.
+v1.4.0
 
----
+com os comandos:
 
-# 15. Fechamento
+git tag -a v1.4.0 -m "Release versão 1.4.0"
+git push origin v1.4.0
+6. Mostrar as diferenças entre versões
 
-Complete o fluxo:
+O comando utilizado foi:
 
-```text
-ALTERAÇÃO NO CÓDIGO
-        ↓
-git status
-        ↓
-git diff
-        ↓
-git add .
-        ↓
-git diff --staged
-        ↓
-git commit
-        ↓
-Conventional Commits
-        ↓
-Semantic Versioning
-        ↓
-git tag
-        ↓
-Release
-        ↓
-CHANGELOG.md
-```
+git diff v1.3.0 v1.4.0
 
-## Pergunta final
+Esse comando permite comparar duas versões do projeto e visualizar as alterações realizadas entre elas.
 
-Qual é o principal benefício de manter um changelog estruturado?
+Também foi utilizado:
 
-Resposta esperada:
+git show v1.4.0
 
-> Comunicar claramente as mudanças entre versões.
+para visualizar as informações da tag criada.
+
+Perguntas finais
+Por que a nova versão não deve ser 1.2.1?
+
+A versão 1.2.1 representaria uma atualização do tipo PATCH, normalmente utilizada para correções e ajustes compatíveis.
+
+Neste caso, existem novas funcionalidades, como recuperação de senha e foto de perfil. Por isso, a atualização deve ser do tipo MINOR, e não PATCH.
+
+Por que também não deve ser 2.0.0?
+
+A versão 2.0.0 seria utilizada quando houvesse uma alteração MAJOR, ou seja, uma mudança incompatível com a versão anterior.
+
+Como o exercício não apresenta nenhuma alteração que quebre a compatibilidade do sistema, não é necessário aumentar o número MAJOR.
+
+Conclusão
+
+O uso conjunto de git diff, Conventional Commits, tags, versionamento semântico e CHANGELOG.md permite acompanhar a evolução do projeto de forma organizada. O histórico fica mais fácil de entender e cada versão pode ser identificada e comparada com versões anteriores.
+
+Observação sobre a execução prática: o repositório utilizado na aula já possuía a tag v1.3.0 criada pelo professor. Por isso, essa tag foi preservada e a versão posterior do meu trabalho foi marcada como v1.4.0.
