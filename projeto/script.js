@@ -8,3 +8,4 @@ botao.addEventListener("click", () => {
 });
 
 console.log("Sistema pronto para uso");
+console.log("Bem-vindo ao sistema");
