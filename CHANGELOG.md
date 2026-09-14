@@ -2,6 +2,12 @@
 
 Todas as alterações importantes deste projeto serão registradas neste arquivo.
 
+## [1.5.0]
+
+### Features
+
+- Adicionada mensagem de boas-vindas ao sistema.
+
 ## [1.3.0]
 
 ### Features
